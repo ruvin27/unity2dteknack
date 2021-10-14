@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerScript : MonoBehaviour
 {
@@ -9,15 +12,18 @@ public class PlayerScript : MonoBehaviour
     public float JumpForce = 5f;
     public SpriteRenderer sr;
     private Animator myAnimation;
-    public static int coins = 0;
+    public static int coins;
+    public Text CoinText;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
+      coins = PlayerPrefs.GetInt("coins",0);
       rigidbody2D = GetComponent<Rigidbody2D>();
       myAnimation = GetComponent<Animator>();
+      CoinText.text = "Coins: " + coins.ToString();
     }
 
     // Update is called once per frame
@@ -44,12 +50,12 @@ public class PlayerScript : MonoBehaviour
         
     }
 
-    void FixedUpdate(){
-       
-    }
-
     void Jump(){
         rigidbody2D.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
+    }
+
+    public void BacktoMenu(){
+        SceneManager.LoadScene("Menu");
     }
 
    

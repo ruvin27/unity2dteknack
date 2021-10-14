@@ -9,6 +9,7 @@ public class PlayerScript : MonoBehaviour
     public float JumpForce = 5f;
     public SpriteRenderer sr;
     private Animator myAnimation;
+    public static int coins = 0;
 
 
 
@@ -22,7 +23,7 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Input.GetAxisRaw("Horizontal"));
+        // Debug.Log(Input.GetAxisRaw("Horizontal"));
         Vector3 moveposition = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
         transform.position += moveposition * MoveSpeed * Time.deltaTime;
         transform.rotation = Quaternion.Euler(0, 0, 0);
